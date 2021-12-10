@@ -1,59 +1,32 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
+import { Navigate } from 'react-router'
 import './style.css'
 
+import InputText from '../../components/Input/InputText'
+import InputNumber from '../../components/Input/InputNumber'
+import Button from '../../components/Button/Button'
+
 const Cadastro = () => {
-
-    /* useEffect(() => {
-        api.get('pessoas')
-            .then(res => {
-                console.log(res);
-            })
-
-        const login = {
-            'email': "pedro@gmail.com",
-            'senha': "senha"
-        }
-
-        api.post('signin', { login })
-            .then(res => {
-                console.log(res.data)
-            })
-
-        const obj = {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                'email': "pedro@gmail.com",
-                'senha': "senha",
-            })
-        }
-
-        const url = 'http://127.0.0.1:5000/signin'
-
-        fetch(url, obj)
-            .then(res => res.json())
-            .then(data => {
-                console.log(data.token)
-            })
-    }); */
 
     const [email, setEmail] = useState('')
     const [senha, setSenha] = useState('')
     const [nome, setNome] = useState('')
     const [idade, setIdade] = useState(0)
+    const [redirectTo, setRedirectTo] = useState(false)
 
-    const handleSubmit = () => {
-
-        console.log('nome: ', nome)
+    const onSubmit = () => {
 
         const user = {
             email: email,
             senha: senha,
             nome: nome,
             idade: idade,
+        }
+
+        if (email === '' || senha === '' || nome === '' || idade === '') {
+            window.alert('Erro! Preencha todos os campos para fazer o cadastro!')
+            return
         }
 
         const obj = {
@@ -67,26 +40,30 @@ const Cadastro = () => {
         fetch('http://127.0.0.1:5000/pessoas', obj)
             .then(res => res.json())
             .then(data => {
-                console.log(data)
+                if(data !== '' && data !== undefined){
+                    window.alert('Usuário cadastrado com sucesso!')
+                    setRedirectTo(true)
+                }else{
+                    window.alert('Erro ao cadastrar usuário')
+                }
+
             })
             .catch(err => {
                 console.log(err)
             })
     }
-
+    if(redirectTo) return (<Navigate to="/login" />)
     return (
-        <div className="App">
-            <div className="container">
-                <h2>Cadastro de Usuário</h2>
-                <p style={{ color: 'red' }} >Preencha todos os campos obrigatorios</p>
-                <input type="text" placeholder="email" onChange={(v) => setEmail(v.target.value)}></ input> <br />
-                <input type="text" placeholder="senha" onChange={(v) => setSenha(v.target.value)} /><br />
-                <input type="text" placeholder="nome" onChange={(v) => setNome(v.target.value)} /><br />
-                <input type="number" placeholder="idade" onChange={(v) => setIdade(v.target.value)} /> <br />
-                <div>
-                    <button onClick={handleSubmit}>cadastrar</button>
-                </div>
-                <Link to="/login">Página de Login</Link>
+        <div className="master">
+            <div className="main">
+                <h1>Cadastro de Usuário</h1>
+                <p style={{ color: '$B14623' }} >Preencha todos os campos obrigatorios</p>
+                <InputText placeholder="Email" tipoInput="cadastro" value={email} setValue={(v) => setEmail(v.target.value)} />
+                <InputText placeholder="Senha" senha={true} tipoInput="cadastro" value={senha} setValue={(v) => setSenha(v.target.value)} />
+                <InputText placeholder="Nome" tipoInput="cadastro" value={nome} setValue={(v) => setNome(v.target.value)} />
+                <InputNumber placeholder="Idade" value={idade} setValue={(v) => setIdade(v.target.value)} />
+                <Button nome="Cadastrar" quandoClicar={onSubmit} />
+                <Link className="estiloLink" to="/login">Página de Login</Link>
             </div>
         </div>
     )

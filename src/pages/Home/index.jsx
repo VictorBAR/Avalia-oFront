@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
+import './style.css'
 
 const Home = () => {
 
@@ -27,10 +28,9 @@ const Home = () => {
     })
 
     return (
-        <div>
-            <h1>Pagina Home</h1>
-            <h2>Seja Bem vindo {nome}</h2>
-            <Link to="/Login">Login</Link>
+        <div className="main" >
+            <h1>Pagina Inicial</h1>
+            <h2>Seja Bem vindo ao nosso site {nome}</h2>
         </div>
     )
 }

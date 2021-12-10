@@ -1,5 +1,5 @@
 .btn {
-    background-color: #1B325F;
+    background-color: #F6921D;
     border: none;
     outline: none;
     width: 300px;
@@ -8,6 +8,6 @@
 }
 
 .btn:hover {
-    background-color: #35486d;
+    background-color: #f5a74f;
     transition: all 200ms ease-in;
 }

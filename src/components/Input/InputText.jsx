@@ -12,6 +12,8 @@ const InputText = (props) => {
             <input 
                 className={cadastroTipo}
                 type="text" 
+                value={props.value}
+                onChange={props.setValue}
                 placeholder={props.placeholder}
                 type={tipo}
             />

@@ -4,7 +4,7 @@ import './style.css'
 const Button = (props) => {
     return(
         <div>
-            <button className="btn" >{props.nome}</button>
+            <button className="btn" onClick={() => props.quandoClicar()}>{props.nome}</button>
         </div>
     )
 }

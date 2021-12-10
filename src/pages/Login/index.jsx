@@ -2,6 +2,9 @@ import React, { useState } from 'react'
 import { Navigate } from 'react-router'
 import InputText from '../../components/Input/InputText'
 import Button from '../../components/Button/Button'
+import { Link } from 'react-router-dom'
+
+import './style.css'
 
 const Login = () => {
 
@@ -26,26 +29,28 @@ const Login = () => {
 
         const token = ''
 
-        fetch('http://127.0.0.1:5000/signin', obj)
+        fetch('http://127.0.0.1:5000/autenticar', obj)
             .then(res => res.json())
             .then(data => {
-                console.log(data.token)
-                sessionStorage.setItem('token', data.token)
-                setRedirectTo(true)
+                if(data.token !== undefined && data.token !== ''){
+                    sessionStorage.setItem('token', data.token)
+                    setRedirectTo(true)
+                }else{
+                    window.alert('Erro, Email ou senha incorretos')
+                }
             })
     }
 
-    if(redirectTo) return (<Navigate to="/" />)
+    if (redirectTo) return (<Navigate to="/" />)
     return (
-        <div>
-            <h1>Pagina Login</h1>
-            <InputText placeholder="Email" tipoInput="login"/>
-            <InputText placeholder="Senha" senha={true} tipoInput="login" />
-            <Button nome="Login" />
-            <br />
-            <input type="text" placeholder="Email" value={login} onChange={(v) => setLogin(v.target.value)} /><br />
-            <input type="text" placeholder="Senha" value={senha} onChange={v => setSenha(v.target.value)} /><br />
-            <button onClick={onSubmit} >Login</button>
+        <div className="master">
+            <div className="main" >
+                <h1>Acesse o sistema</h1>
+                <InputText placeholder="Email" tipoInput="login" value={login} setValue={(v) => setLogin(v.target.value)} />
+                <InputText placeholder="Senha" senha={true} tipoInput="login" value={senha} setValue={(v) => setSenha(v.target.value)} />
+                <Button nome="Login" quandoClicar={onSubmit} />
+                <Link to="/cadastro" className="estiloLink" >Não tem cadastro? Cadastre-se</Link>
+            </div>
         </div>
     )
 }
