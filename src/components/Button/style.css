@@ -1,0 +1,13 @@
+.btn {
+    background-color: #1B325F;
+    border: none;
+    outline: none;
+    width: 300px;
+    height: 40px;
+    cursor: pointer;
+}
+
+.btn:hover {
+    background-color: #35486d;
+    transition: all 200ms ease-in;
+}

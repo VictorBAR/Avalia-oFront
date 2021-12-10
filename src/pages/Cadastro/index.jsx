@@ -1,14 +1,10 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
-import InputText from '../../components/Input/InputText'
 import './style.css'
-import axios from 'axios'
-
-import api from '../../services/api'
 
 const Cadastro = () => {
 
-    useEffect(() => {
+    /* useEffect(() => {
         api.get('pessoas')
             .then(res => {
                 console.log(res);
@@ -27,7 +23,6 @@ const Cadastro = () => {
         const obj = {
             method: 'POST',
             headers: {
-                // 'Accept': 'application/json',
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
@@ -43,7 +38,7 @@ const Cadastro = () => {
             .then(data => {
                 console.log(data.token)
             })
-    });
+    }); */
 
     const [email, setEmail] = useState('')
     const [senha, setSenha] = useState('')
@@ -77,20 +72,6 @@ const Cadastro = () => {
             .catch(err => {
                 console.log(err)
             })
-
-     /*    api.post('pessoas', { user }, {
-            headers: {
-                "Content-Type": "application/json"
-            }
-        })
-            .then(res => {
-                console.log(res)
-                console.log(res.data)
-            })
-            .catch(err => {
-                console.log(err)
-            }) */
-
     }
 
     return (
@@ -98,7 +79,6 @@ const Cadastro = () => {
             <div className="container">
                 <h2>Cadastro de Usuário</h2>
                 <p style={{ color: 'red' }} >Preencha todos os campos obrigatorios</p>
-
                 <input type="text" placeholder="email" onChange={(v) => setEmail(v.target.value)}></ input> <br />
                 <input type="text" placeholder="senha" onChange={(v) => setSenha(v.target.value)} /><br />
                 <input type="text" placeholder="nome" onChange={(v) => setNome(v.target.value)} /><br />

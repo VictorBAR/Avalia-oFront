@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
 import { Navigate } from 'react-router'
+import InputText from '../../components/Input/InputText'
+import Button from '../../components/Button/Button'
 
 const Login = () => {
 
@@ -37,6 +39,10 @@ const Login = () => {
     return (
         <div>
             <h1>Pagina Login</h1>
+            <InputText placeholder="Email" tipoInput="login"/>
+            <InputText placeholder="Senha" senha={true} tipoInput="login" />
+            <Button nome="Login" />
+            <br />
             <input type="text" placeholder="Email" value={login} onChange={(v) => setLogin(v.target.value)} /><br />
             <input type="text" placeholder="Senha" value={senha} onChange={v => setSenha(v.target.value)} /><br />
             <button onClick={onSubmit} >Login</button>

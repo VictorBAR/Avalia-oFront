@@ -1,0 +1,22 @@
+.inputLogin {
+    background-color: #9CC4E4;
+    border: none;
+    outline: none;
+    width: 300px;
+    height: 30px;
+    box-shadow:5px 5px 4px #1B325F;
+}   
+
+.inputLogin:hover {
+    background-color: #7ca8cc;
+    transition: all 200ms ease-in;
+}
+
+.inputCadastro {
+    background-color: #9CC4E4;
+    border: none;
+    outline: none;
+    width: 300px;
+    height: 30px;
+}   
+   

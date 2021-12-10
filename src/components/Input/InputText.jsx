@@ -1,36 +1,19 @@
 import React from "react";
+import './style.css'
 
 const InputText = (props) => {
 
-    const estilo = {
-        
-        backgroundColor: '#D4DDD6',
-        border: 'none',
-        outline: 'none',
-        borderShadow: 'none',
-        width: 300,
-        height: 30,
+    const tipo = props.senha? 'password': 'text'
 
-      /*   '&:focus': {
-            outline: 'none',
-            border: 'none',
-            borderShadow: 'none',
-            backgroundColor: 'red',
-        }, */
-
-        '&:hover': {
-            backgroundColor: 'blue',
-
-        }
-    }
+    const cadastroTipo = props.tipoInput==="cadastro"? 'inputCadastro' : 'inputLogin';
 
     return(
         <div>
             <input 
-                style={estilo}
+                className={cadastroTipo}
                 type="text" 
                 placeholder={props.placeholder}
-    
+                type={tipo}
             />
         </div>
     )
